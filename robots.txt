@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://andrea-pitto-fluxa-press.netlify.app/sitemap.xml
