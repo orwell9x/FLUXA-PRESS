@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Josefin+Sans:wght@300;400;600&display=swap');
+
+  :root {
+    --ink: #1a1410;
+    --paper: #f0ebe3;
+    --accent: #c0321a;
+    --gold: #b8924a;
+    --mid: #6b5e52;
+    --light: #ddd4c7;
+    --fluxa-blue: #1e3a5f;
+    --fluxa-dark: #102040;
+  }
+
+  .fp-wrap * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  .fp-wrap {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    background: var(--paper);
+    color: var(--ink);
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 0 60px;
+  }
+
+  .fp-catalog-area {
+    padding: 0 24px;
+  }
+
+  /* HEADER */
+  .fp-header {
+    text-align: center;
+    padding: 52px 20px 40px;
+    background: linear-gradient(160deg, var(--fluxa-dark) 0%, #1e3a5f 60%, #2a4a72 100%);
+    border-bottom: 4px solid var(--accent);
+    position: relative;
+    margin-bottom: 0;
+  }
+
+  /* Logo rettangolo rosso FLUXA-PRESS */
+  .fp-red-badge {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: clamp(22px, 5vw, 38px);
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    padding: 14px 36px;
+    margin-bottom: 28px;
+    box-shadow: 0 4px 24px rgba(192,50,26,0.45);
+  }
+
+  .fp-logo-area {
+    margin-bottom: 20px;
+  }
+
+  .fp-logo-area img {
+    max-width: 260px;
+    width: 100%;
+    filter: brightness(0) invert(1);
+    opacity: 0.85;
+  }
+
+  .fp-title {
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 300;
+    font-size: clamp(13px, 2.5vw, 18px);
+    letter-spacing: 0.3em;
+    color: rgba(255,255,255,0.6);
+    text-transform: uppercase;
+    margin-top: 6px;
+  }
+
+  .fp-title span { color: var(--gold); }
+
+  .fp-tagline {
+    font-size: 1rem;
+    font-style: italic;
+    color: rgba(255,255,255,0.7);
+    margin-top: 12px;
+    letter-spacing: 0.04em;
+  }
+
+  /* SOCIAL LINKS HEADER */
+  .fp-social-links {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 22px;
+  }
+
+  .fp-social-link {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    text-decoration: none;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.75);
+    border: 1px solid rgba(255,255,255,0.25);
+    padding: 7px 16px;
+    transition: all 0.25s;
+    background: rgba(255,255,255,0.05);
+  }
+
+  .fp-social-link:hover {
+    background: rgba(255,255,255,0.15);
+    color: #fff;
+    border-color: rgba(255,255,255,0.6);
+  }
+
+  .fp-social-link svg {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+    flex-shrink: 0;
+  }
+
+  /* PRESENTAZIONE */
+  .fp-about {
+    padding: 40px 32px;
+    border-bottom: 1px solid var(--light);
+    background: #fff;
+    border-left: 5px solid var(--fluxa-blue);
+    margin-top: 0;
+  }
+
+  .fp-about p {
+    font-size: 1.15rem;
+    line-height: 1.85;
+    color: var(--ink);
+    margin-bottom: 16px;
+    max-width: 740px;
+  }
+
+  .fp-about p strong {
+    color: var(--fluxa-blue);
+    font-weight: 600;
+  }
+
+  /* SEZIONE TITOLO */
+  .fp-section-title {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--fluxa-blue);
+    padding: 10px 18px;
+    margin-bottom: 28px;
+    margin-top: 48px;
+    display: inline-block;
+  }
+
+  /* SERIE BADGE */
+  .fp-serie-badge {
+    display: inline-block;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border: 1px solid currentColor;
+    margin-bottom: 28px;
+  }
+
+  .fp-serie-badge.bio { color: var(--fluxa-blue); border-color: var(--fluxa-blue); }
+  .fp-serie-badge.ombre { color: #2d1a2e; border-color: #2d1a2e; }
+  .fp-serie-badge.en { color: #1a3020; border-color: #1a3020; }
+
+  /* BOOK CARD */
+  .fp-book {
+    display: grid;
+    grid-template-columns: 3px 90px 1fr;
+    gap: 0 16px;
+    margin-bottom: 32px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--light);
+    align-items: start;
+  }
+
+  .fp-book-cover {
+    width: 90px;
+    min-height: 120px;
+    object-fit: cover;
+    box-shadow: 2px 3px 10px rgba(0,0,0,0.18);
+    display: block;
+  }
+
+  .fp-book-cover-placeholder {
+    width: 90px;
+    min-height: 120px;
+    background: var(--light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.6rem;
+    color: var(--mid);
+    text-align: center;
+  }
+
+  .fp-book:last-child { border-bottom: none; }
+
+  .fp-book-stripe {
+    width: 3px;
+    background: var(--fluxa-blue);
+    border-radius: 2px;
+  }
+
+  .fp-serie-badge.ombre ~ .fp-books-list .fp-book-stripe { background: #2d1a2e; }
+  .fp-serie-en .fp-book-stripe { background: #1a3020; }
+
+  .fp-author-line {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    color: var(--mid);
+    margin-bottom: 6px;
+    text-transform: uppercase;
+  }
+
+  .fp-book-title-coming {
+    font-size: clamp(1rem, 2.5vw, 1.22rem);
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--mid);
+    margin-bottom: 12px;
+    font-style: italic;
+  }
+
+  .fp-coming-tag {
+    display: inline-block;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border: 1px dashed var(--accent);
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  .fp-book-num {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+    margin-bottom: 5px;
+  }
+
+  .fp-book-title {
+    font-size: clamp(1rem, 2.5vw, 1.22rem);
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--ink);
+    margin-bottom: 12px;
+  }
+
+  .fp-book-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .fp-link {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    padding: 5px 13px;
+    border: 1px solid var(--fluxa-blue);
+    color: var(--fluxa-blue);
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+
+  .fp-link:hover {
+    background: var(--fluxa-blue);
+    color: var(--paper);
+  }
+
+  .fp-link.ebook { border-color: var(--accent); color: var(--accent); }
+  .fp-link.ebook:hover { background: var(--accent); color: var(--paper); }
+
+  /* ALTRI EDITORI — sezione separata */
+  .fp-others {
+    margin-top: 60px;
+    padding: 36px 32px;
+    background: var(--fluxa-dark);
+    color: var(--paper);
+    position: relative;
+  }
+
+  .fp-others::before {
+    content: '⁂';
+    display: block;
+    text-align: center;
+    font-size: 1.4rem;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .fp-others-label {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-align: center;
+    margin-bottom: 6px;
+  }
+
+  .fp-others-subtitle {
+    text-align: center;
+    font-style: italic;
+    font-size: 1rem;
+    color: #c8bdb5;
+    margin-bottom: 36px;
+    line-height: 1.6;
+  }
+
+  .fp-other-book {
+    border-top: 1px solid #2a4060;
+    padding: 24px 0;
+    overflow: hidden;
+  }
+
+  .fp-other-book img.fp-book-cover {
+    width: 110px !important;
+    image-rendering: -webkit-optimize-contrast;
+    box-shadow: 2px 3px 14px rgba(0,0,0,0.5);
+    margin-right: 20px !important;
+  }
+
+  .fp-other-book:last-child { border-bottom: 1px solid #2a4060; }
+
+  .fp-other-publisher {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+
+  .fp-other-title {
+    font-size: 1.12rem;
+    font-weight: 600;
+    color: var(--paper);
+    margin-bottom: 10px;
+    line-height: 1.4;
+  }
+
+  .fp-other-desc {
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: #c0b5ac;
+    margin-bottom: 12px;
+  }
+
+  .fp-other-link {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    padding: 5px 13px;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    display: inline-block;
+    transition: all 0.2s;
+  }
+
+  .fp-other-link:hover { background: var(--gold); color: var(--ink); }
+
+  /* COMING SOON */
+  .fp-coming {
+    display: inline-block;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border: 1px dashed var(--gold);
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  @media (max-width: 600px) {
+    .fp-others { padding: 28px 18px; }
+    .fp-book-links { gap: 6px; }
+  }
+</style>
+</head>
+<body>
+<div class="fp-wrap">
+
+  <!-- INTESTAZIONE -->
+  <header class="fp-header">
+    <div class="fp-red-badge">FLUXA-PRESS</div>
+    <div class="fp-title">Casa editrice indipendente</div>
+    <div class="fp-tagline">Filosofia · Critica · Scienze della mente</div>
+    <div class="fp-social-links">
+      <a class="fp-social-link" href="https://www.linkedin.com/in/andrea-pitto-91203a291/" target="_blank">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
+      </a>
+      <a class="fp-social-link" href="https://andreapitto.substack.com" target="_blank">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/></svg>
+        Substack
+      </a>
+    </div>
+  </header>
+
+  <!-- PRESENTAZIONE -->
+  <section class="fp-about">
+    <p><strong>FLUXA·PRESS</strong> è una casa editrice nata per valorizzare progetti filosofici e critici con taglio scientifico. Un marchio indipendente con attenzione ai temi contemporanei, cura del linguaggio, ricerca di senso.</p>
+    <p>Il taglio, benché prevalentemente razionale e scientifico, non sottovaluta l'apporto delle emozioni e l'ambito della creatività e dell'arte. Il catalogo parte da titoli di saggistica e percorsi guidati, in formato digitale e cartaceo.</p>
+    <p>Gli argomenti trattati riguardano il rapporto individuo-società e, in particolare, <strong>come l'architettura del capitalismo delle piattaforme influenzi la struttura mentale</strong>. I libri di FLUXA·PRESS identificano strumenti e percorsi per fronteggiare il dominio dei dispositivi informatici e delle intelligenze artificiali — nella consapevolezza che le soluzioni non possono essere solo individuali, ma devono coinvolgere la struttura della società contemporanea.</p>
+  </section>
+
+  <div class="fp-catalog-area">
+
+  <!-- CATALOGO FLUXA PRESS -->
+  <div class="fp-section-title">Catalogo Fluxa·Press — opere di Andrea Pitto</div>
+
+  <!-- SERIE BIO-(IL)LOGICHE IT -->
+  <div>
+    <div class="fp-serie-badge bio">🇮🇹 Serie Bio-(Il)logiche</div>
+    <div class="fp-books-list">
+
+      <div class="fp-book">
+        <div class="fp-book-stripe"></div>
+        <img class="fp-book-cover" src="https://images-na.ssl-images-amazon.com/images/P/B0GZBW5DYK.01.LZZZZZZZ.jpg" onerror="this.style.display='none'" alt="Copertina AI Burnout">
+        <div>
+          <div class="fp-book-num">01 · Andrea Pitto</div>
+          <div class="fp-book-title">AI Burnout: svuotato dallo stress digitale? Percorso in 14 giorni per ritrovare la tua energia</div>
+          <div class="fp-book-links">
+            <a class="fp-link ebook" href="https://www.amazon.it/dp/B0GZBW5DYK" target="_blank">📱 Acquista eBook</a>
+            <a class="fp-link" href="https://www.amazon.it/dp/B0GZJVNMTC" target="_blank">📖 Acquista cartaceo</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="fp-book">
+        <div class="fp-book-stripe"></div>
+        <img class="fp-book-cover" src="https://images-na.ssl-images-amazon.com/images/P/B0GRC2278W.01.LZZZZZZZ.jpg" onerror="this.style.display='none'" alt="Il corpo sa prima della mente">
+        <div>
+          <div class="fp-book-num">02 · Andrea Pitto</div>
+          <div class="fp-book-title">Il corpo sa prima della mente: smettere di procrastinare senza forzare la volontà</div>
+          <div class="fp-book-links">
+            <a class="fp-link ebook" href="https://www.amazon.it/dp/B0GRC2278W" target="_blank">📱 Acquista eBook</a>
+            <a class="fp-link" href="https://www.amazon.it/dp/B0GS4ST1BB" target="_blank">📖 Acquista cartaceo</a>
+            <a class="fp-link" href="https://www.amazon.it/dp/B0GS14JM17" target="_blank">📗 Copertina rigida</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="fp-book">
+        <div class="fp-book-stripe"></div>
+        <img class="fp-book-cover" src="https://images-na.ssl-images-amazon.com/images/P/B0GTT4ML36.01.LZZZZZZZ.jpg" onerror="this.style.display='none'" alt="Stoicismo">
+        <div>
+          <div class="fp-book-num">03 · Andrea Pitto</div>
+          <div class="fp-book-title">Stoicismo per il corpo e per la mente: gestire stress, angoscia e sovraccarico mentale con la psicofilosofia</div>
+          <div class="fp-book-links">
+            <a class="fp-link ebook" href="https://www.amazon.it/dp/B0GTFZXFBL" target="_blank">📱 Acquista eBook</a>
+            <a class="fp-link" href="https://www.amazon.it/dp/B0GTT4ML36" target="_blank">📖 Acquista cartaceo</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="fp-book">
+        <div class="fp-book-stripe"></div>
+        <img class="fp-book-cover" src="https://images-na.ssl-images-amazon.com/images/P/B0GX22NVJY.01.LZZZZZZZ.jpg" onerror="this.style.display='none'" alt="Chi sta decidendo">
+        <div>
+          <div class="fp-book-num">04 · Andrea Pitto</div>
+          <div class="fp-book-title">Chi sta decidendo al posto tuo? Dialoghi sulla mente — come neuroscienze, inconscio e algoritmi modellano chi sei</div>
+          <div class="fp-book-links">
+            <a class="fp-link ebook" href="https://www.amazon.it/dp/B0GSS756SF" target="_blank">📱 Acquista eBook</a>
+            <a class="fp-link" href="https://www.amazon.it/dp/B0GSZKN2TN" target="_blank">📖 Acquista cartaceo</a>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /bio list -->
+  </div>
+
+  <!-- SERIE OMBRE IT -->
+  <div style="margin-top:40px;">
+    <div class="fp-serie-badge ombre">🌑 Serie Ombre</div>
+    <div class="fp-books-list" style="--stripe-color:#2d1a2e;">
+
+      <div class="fp-book">
+        <div class="fp-book-stripe" style="background:#2d1a2e;"></div>
+        <img class="fp-book-cover" src="https://images-na.ssl-images-amazon.com/images/P/B0GSJTJ52N.01.LZZZZZZZ.jpg" onerror="this.style.display='none'" alt="L'Ombra dentro di te">
+        <div>
+          <div class="fp-book-num">05 · Andrea Pitto</div>
+          <div class="fp-book-title">L'Ombra dentro di te: metodo junghiano per integrare le parti che rifiuti e uscire dagli schemi che ti limitano</div>
+          <div class="fp-book-links">
+            <a class="fp-link ebook" href="https://www.amazon.it/dp/B0GSJTJ52N" target="_blank">📱 Acquista eBook</a>
+            <a class="fp-link" href="https://www.amazon.it/dp/B0GV7XV8YW" target="_blank">📖 Acquista cartaceo</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="fp-book">
+        <div class="fp-book-stripe" style="background:#2d1a2e;"></div>
+        <img class="fp-book-cover" src="https://images-na.ssl-images-amazon.com/images/P/B0DP85K46F.01.LZZZZZZZ.jpg" onerror="this.style.display='none'" alt="Il Diario dell'Ombra">
+        <div>
+          <div class="fp-book-num">06 · Andrea Pitto</div>
+          <div class="fp-book-title">Il Diario dell'Ombra: Shadow Work — percorso in quattro tappe alla scoperta di Sé</div>
+          <div class="fp-book-links">
+            <a class="fp-link ebook" href="https://www.amazon.it/dp/B0DP85K46F" target="_blank">📱 Acquista eBook</a>
+            <a class="fp-link" href="https://www.amazon.it/dp/B0GY1R58P2" target="_blank">📖 Acquista cartaceo</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="fp-book">
+        <div class="fp-book-stripe" style="background:#2d1a2e;"></div>
+        <img class="fp-book-cover" src="https://images-na.ssl-images-amazon.com/images/P/B0G4XMKYLQ.01.LZZZZZZZ.jpg" onerror="this.style.display='none'" alt="Ombre Differenti">
+        <div>
+          <div class="fp-book-num">07 · Andrea Pitto</div>
+          <div class="fp-book-title">Ombre Differenti: Shadow Work per genere, età e ruolo professionale</div>
+          <div class="fp-book-links">
+            <a class="fp-link ebook" href="https://www.amazon.it/dp/B0G4XMKYLQ" target="_blank">📱 Acquista eBook</a>
+            <a class="fp-link" href="https://www.amazon.it/dp/B0GWLZ8VXT" target="_blank">📖 Acquista cartaceo</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- EDIZIONI INGLESI -->
+  <div style="margin-top:40px;" class="fp-serie-en">
+    <div class="fp-serie-badge en">🇬🇧 English Editions</div>
+
+    <div class="fp-book">
+      <div class="fp-book-stripe" style="background:#1a3020;"></div>
+      <img class="fp-book-cover" src="https://images-na.ssl-images-amazon.com/images/P/B0GRWY1HQL.01.LZZZZZZZ.jpg" onerror="this.style.display='none'" alt="The Body Knows First">
+      <div>
+        <div class="fp-book-num">08 · Andrea Pitto</div>
+        <div class="fp-book-title">The Body Knows First: Stopping Procrastination Without Forcing Your Will</div>
+        <div class="fp-book-links">
+          <a class="fp-link ebook" href="https://www.amazon.it/dp/B0GRWY1HQL" target="_blank">📱 Acquista eBook</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="fp-book">
+      <div class="fp-book-stripe" style="background:#1a3020;"></div>
+      <img class="fp-book-cover" src="https://images-na.ssl-images-amazon.com/images/P/B0GHRPKRB5.01.LZZZZZZZ.jpg" onerror="this.style.display='none'" alt="The Shadow Within You">
+      <div>
+        <div class="fp-book-num">09 · Andrea Pitto</div>
+        <div class="fp-book-title">The Shadow Within You: A Jungian Method to Integrate Your Shadow and Break Free from Self Sabotage</div>
+        <div class="fp-book-links">
+          <a class="fp-link ebook" href="https://www.amazon.it/dp/B0GHRPKRB5" target="_blank">📱 Acquista eBook</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- PROSSIME USCITE FLUXA-PRESS -->
+  <div style="margin-top:40px;">
+    <div class="fp-serie-badge" style="color:#7a3800; border-color:#7a3800;">🔜 Prossime uscite Fluxa-Press</div>
+
+    <div class="fp-book">
+      <div class="fp-book-stripe" style="background:#7a3800;"></div>
+      <div>
+        <div class="fp-book-num">10 · Andrea Pitto</div>
+        <div class="fp-coming-tag">In pubblicazione a breve</div>
+        <div class="fp-book-title-coming">Leonardo non usava Google e nemmeno le AI</div>
+      </div>
+    </div>
+
+    <div class="fp-book">
+      <div class="fp-book-stripe" style="background:#7a3800;"></div>
+      <div>
+        <div class="fp-book-num">11 · Andrea Pitto</div>
+        <div class="fp-coming-tag">In pubblicazione a breve</div>
+        <div class="fp-book-title-coming">L'Anima Algoritmica — Manuale clinico del sé programmato. Guida alle psicopatologie digitali</div>
+      </div>
+    </div>
+
+  </div>
+
+  </div><!-- /fp-catalog-area -->
+
+  <!-- ======================== -->
+  <!-- ALTRI EDITORI -->
+  <!-- ======================== -->
+  <section class="fp-others">
+    <div class="fp-others-label">Altre pubblicazioni di Andrea Pitto</div>
+    <p class="fp-others-subtitle">I titoli seguenti non sono pubblicati da Fluxa·Press,<br>ma fanno parte dell'opera complessiva dell'autore.</p>
+
+    <!-- Mondo come ribellione -->
+    <div class="fp-other-book">
+      <img class="fp-book-cover" style="float:left;margin:0 20px 8px 0;width:110px;" src="https://www.ibs.it/images/9791259900609_0_0_800_0_75.jpg" onerror="this.style.display='none'" alt="Il Mondo come Ribellione">
+      <div class="fp-other-publisher">Transeuropa · Collana Studi e Ricerche</div>
+      <div class="fp-other-title">Il Mondo come Ribellione e Reazione. Homo pandemicus e teorie della cospirazione nel tardocapitalismo</div>
+      <p class="fp-other-desc">Un'analisi del ribellismo populista e antipolitico emerso durante la pandemia: dalle teorie complottiste alla "dittatura sanitaria", fino alle libertà disattese che il dibattito ha sistematicamente eluso.</p>
+    </div>
+
+    <!-- Fenomenologia del Tardocapitalismo -->
+    <div class="fp-other-book">
+      <img class="fp-book-cover" style="float:left;margin:0 20px 8px 0;width:110px;" src="https://www.ibs.it/images/9791259900821_0_0_800_0_75.jpg" onerror="this.style.display='none'" alt="Fenomenologia del Tardocapitalismo — Homo Custoditus">
+      <div class="fp-other-publisher">Transeuropa · Collana Studi e Ricerche</div>
+      <div class="fp-other-title">Fenomenologia del Tardocapitalismo. Homo Custoditus</div>
+      <p class="fp-other-desc">Il capitalismo degli ultimi decenni è caratterizzato dalla crescente finanziarizzazione del sistema economico e delle imprese, con un'attenzione sempre più sbilanciata sugli aspetti finanziari a scapito di quelli produttivi. Il capitalismo recente è divenuto un capitalismo digitale (Amazon, Facebook, Google) e l'e-commerce sta soppiantando i mercati usuali. Il volume analizza la fenomenologia del capitalismo inteso come realizzazione del liberismo, a sua volta derivato dal liberalismo classico. Lo spirito tardoliberista utilizza il libero mercato per condizionare e governamentare la gente, generando una società che tende a farsi totalitaria — un totalitarismo che non ricorre ai metodi classici degli stati autoritari, ma che avanza silenziosamente attraverso i dispositivi del controllo digitale.</p>
+      <a class="fp-other-link" href="https://www.ibs.it/fenomenologia-del-tardocapitalismo-homo-custoditus-libro-andrea-pitto/e/9791259900821" target="_blank">Scheda libro →</a>
+    </div>
+
+    <!-- Jung l'eretico -->
+    <div class="fp-other-book">
+      <img class="fp-book-cover" style="float:left;margin:0 20px 8px 0;width:110px;" src="https://www.ibs.it/images/9791259900982_0_0_800_0_75.jpg" onerror="this.style.display='none'" alt="Jung l'Eretico">
+      <div class="fp-other-publisher">Transeuropa</div>
+      <div class="fp-other-title">Jung l'Eretico. Misticismo, esoterismo, meccanica quantistica, nazismo</div>
+      <p class="fp-other-desc">Il pensiero di Jung tra le vette dello spirito e gli abissi della mente: dallo spiritismo ai Pitagorici, dall'interesse per i fenomeni occulti all'eredità controversa del processo di individuazione.</p>
+      <a class="fp-other-link" href="https://www.unilibro.it/libro/pitto-andrea/jung-eretico-misticismo-esoterismo-meccanica-quantistica-nazismo/9791259900982" target="_blank">Scheda libro →</a>
+    </div>
+
+    <!-- Jung e Reich -->
+    <div class="fp-other-book">
+      <img class="fp-book-cover" style="float:left;margin:0 20px 8px 0;width:110px;" src="https://www.ibs.it/images/9788857521848_0_0_800_0_75.jpg" onerror="this.style.display='none'" alt="Jung e Reich">
+      <div class="fp-other-publisher">Mimesis</div>
+      <div class="fp-other-title">Jung e Reich. Freud e i suoi discepoli. Eresia, Misticismo, Energia, Nazismo</div>
+      <p class="fp-other-desc">Oltre le contrapposizioni tra i due autori, le analogie profonde nella loro ricerca. Reich muore in carcere; Jung nella sua Torre a Bollingen. Entrambi lasciano strumenti ancora utili per comprendere la contemporaneità.</p>
+    </div>
+
+    <!-- Wilhelm Reich libertario -->
+    <div class="fp-other-book">
+      <img class="fp-book-cover" style="float:left;margin:0 20px 8px 0;width:110px;" src="https://www.ibs.it/images/9791259900906_0_0_800_0_75.jpg" onerror="this.style.display='none'" alt="Wilhelm Reich libertario">
+      <div class="fp-other-publisher">Transeuropa</div>
+      <div class="fp-other-title">Wilhelm Reich libertario? Autorità e autonomia, fascismo, controllo e rivolta</div>
+      <p class="fp-other-desc">Reich tra marxismo, femminismo e anarchismo: un'esplorazione del substrato libertario del suo pensiero, dalla repressione sessuale alla coscienza di classe, fino alle radici anarchiche della sua teoria.</p>
+      <a class="fp-other-link" href="https://www.unilibro.it/libro/pitto-andrea/wilhelm-reich-libertario-autorita-autonomia-fascismo-controllo-rivolta/9791259900906" target="_blank">Scheda libro →</a>
+    </div>
+
+    <!-- Reich e freudo-marxismo -->
+    <div class="fp-other-book">
+      <img class="fp-book-cover" style="float:left;margin:0 20px 8px 0;width:110px;" src="https://www.ibs.it/images/9788840019314_0_0_800_0_75.jpg" onerror="this.style.display='none'" alt="Wilhelm Reich e il freudo-marxismo">
+      <div class="fp-other-publisher">Unicopli</div>
+      <div class="fp-other-title">Wilhelm Reich e il freudo-marxismo</div>
+      <p class="fp-other-desc">La sintesi tra psicoanalisi e marxismo nell'opera di Reich: come l'oppressione psicologica individuale si intrecci con quella sociale, e il ruolo della liberazione sessuale come precondizione del pensiero critico.</p>
+    </div>
+
+    <!-- Pandemia e Psicopolitica -->
+    <div class="fp-other-book">
+      <img class="fp-book-cover" style="float:left;margin:0 20px 8px 0;width:110px;" src="https://www.ibs.it/images/9788868667221_0_0_800_0_75.jpg" onerror="this.style.display='none'" alt="Pandemia e Psicopolitica">
+      <div class="fp-other-publisher">Guida Editori</div>
+      <div class="fp-other-title">Pandemia e Psicopolitica</div>
+      <p class="fp-other-desc">Un diario scritto giorno per giorno durante il primo anno di pandemia. Scienza, progresso, fake news, movimenti no-vax, complottismo e il rapporto Occidente-Oriente riletti attraverso le categorie della psicopolitica.</p>
+    </div>
+
+    <!-- Il tramonto dell'anima — in uscita -->
+    <div class="fp-other-book">
+      <div class="fp-other-publisher">Zephyro</div>
+      <div class="fp-coming">In uscita — seconda metà 2026</div>
+      <div class="fp-other-title">Il tramonto dell'anima. L'autocoscienza come «errore evolutivo»</div>
+      <p class="fp-other-desc">La tesi centrale del volume rovescia la prospettiva corrente: l'autocoscienza, pur essendo fondamento della complessità sociale e culturale umana, si configura nel medio termine come un fattore disfunzionale — un errore evolutivo che ne determina anche la patologia e la successiva decadenza.</p>
+    </div>
+
+  </section>
+
+</div>
+</body>
+</html>
+
